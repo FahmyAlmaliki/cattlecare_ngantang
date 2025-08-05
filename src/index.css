@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 120 20% 98%;
+    --foreground: 140 10% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 140 10% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 140 10% 9%;
+
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 142 76% 42%;
+
+    --secondary: 120 20% 95%;
+    --secondary-foreground: 140 10% 9%;
+
+    --muted: 120 20% 95%;
+    --muted-foreground: 140 5% 64%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 120 20% 90%;
+    --input: 120 20% 90%;
+    --ring: 142 76% 36%;
+
+    /* Farm theme colors */
+    --farm-green: 142 76% 36%;
+    --farm-green-light: 142 76% 42%;
+    --farm-green-dark: 142 76% 30%;
+    --earth-brown: 30 20% 45%;
+    --soil-brown: 30 30% 35%;
+    --sky-blue: 200 100% 70%;
+    --warning-amber: 45 100% 51%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 42%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%), hsl(120 20% 98%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(120 20% 98%));
+
+    /* Shadows */
+    --shadow-farm: 0 10px 30px -10px hsl(142 76% 36% / 0.2);
+    --shadow-card: 0 4px 20px -4px hsl(140 10% 9% / 0.1);
+
+    /* Animation */
+    --transition-farm: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 140 20% 6%;
+    --foreground: 120 20% 98%;
+
+    --card: 140 15% 8%;
+    --card-foreground: 120 20% 98%;
+
+    --popover: 140 15% 8%;
+    --popover-foreground: 120 20% 98%;
+
+    --primary: 142 76% 42%;
+    --primary-foreground: 140 20% 6%;
+    --primary-hover: 142 76% 48%;
+
+    --secondary: 140 15% 12%;
+    --secondary-foreground: 120 20% 98%;
+
+    --muted: 140 15% 12%;
+    --muted-foreground: 120 10% 70%;
+
+    --accent: 142 76% 42%;
+    --accent-foreground: 140 20% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 120 20% 98%;
+
+    --border: 140 15% 15%;
+    --input: 140 15% 15%;
+    --ring: 142 76% 42%;
+
+    /* Dark theme farm colors */
+    --farm-green: 142 76% 42%;
+    --farm-green-light: 142 76% 48%;
+    --farm-green-dark: 142 76% 35%;
+    --earth-brown: 30 25% 50%;
+    --soil-brown: 30 35% 40%;
+    --sky-blue: 200 100% 75%;
+    --warning-amber: 45 100% 56%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
