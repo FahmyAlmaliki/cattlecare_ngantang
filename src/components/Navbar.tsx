@@ -24,10 +24,10 @@ const Navbar = () => {
               <img 
                 src={cattleCareLogo} 
                 alt="Cattle CARE Logo" 
-                className="h-10 w-10 object-contain"
+                className="h-20 w-20 object-contain"
               />
               <h1 className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                Cattle CARE
+                CattleCARE
               </h1>
             </div>
           </div>
