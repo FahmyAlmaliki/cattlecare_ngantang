@@ -67,9 +67,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Kontak</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <p>Email: info@cattlecare.id</p>
-              <p>Phone: +62 xxx-xxx-xxxx</p>
-              <p>WhatsApp: +62 xxx-xxx-xxxx</p>
+              <p>Email: cattlecare@gmail.com</p>
+              <p>Phone: +62 896-0341-1079</p>
+              <p>WhatsApp: +62 896-0341-1079</p>
               <div className="mt-4">
                 <p className="font-medium text-foreground mb-2">Teknologi:</p>
                 <p>ESP32 • Supabase • React • TypeScript</p>
