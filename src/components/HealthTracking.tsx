@@ -12,25 +12,12 @@ import {
   AlertTriangle
 } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { useState, useEffect } from "react";
+import AddActivityForm from "./AddActivityForm";
 
 const HealthTracking = () => {
-  // Sample data
-  const healthData = [
-    { month: 'Jan', checkups: 12, vaccinations: 8, treatments: 3 },
-    { month: 'Feb', checkups: 15, vaccinations: 10, treatments: 2 },
-    { month: 'Mar', checkups: 18, vaccinations: 12, treatments: 5 },
-    { month: 'Apr', checkups: 14, vaccinations: 9, treatments: 1 },
-    { month: 'Mei', checkups: 16, vaccinations: 11, treatments: 4 },
-    { month: 'Jun', checkups: 20, vaccinations: 15, treatments: 2 },
-  ];
-
-  const healthStatusData = [
-    { name: 'Sehat', value: 85, color: 'hsl(var(--farm-green))' },
-    { name: 'Monitoring', value: 10, color: 'hsl(var(--warning-amber))' },
-    { name: 'Perawatan', value: 5, color: 'hsl(var(--destructive))' },
-  ];
-
-  const recentActivities = [
+  const [isAddActivityOpen, setIsAddActivityOpen] = useState(false);
+  const [recentActivities, setRecentActivities] = useState([
     {
       id: 1,
       type: 'vaccination',
@@ -63,7 +50,63 @@ const HealthTracking = () => {
       date: '1 minggu lalu',
       status: 'completed'
     }
+  ]);
+
+  // Listen for navbar add activity event
+  useEffect(() => {
+    const handleOpenAddActivity = () => {
+      setIsAddActivityOpen(true);
+    };
+
+    window.addEventListener('openAddActivity', handleOpenAddActivity);
+    
+    return () => {
+      window.removeEventListener('openAddActivity', handleOpenAddActivity);
+    };
+  }, []);
+
+  // Sample data
+  const healthData = [
+    { month: 'Jan', checkups: 12, vaccinations: 8, treatments: 3 },
+    { month: 'Feb', checkups: 15, vaccinations: 10, treatments: 2 },
+    { month: 'Mar', checkups: 18, vaccinations: 12, treatments: 5 },
+    { month: 'Apr', checkups: 14, vaccinations: 9, treatments: 1 },
+    { month: 'Mei', checkups: 16, vaccinations: 11, treatments: 4 },
+    { month: 'Jun', checkups: 20, vaccinations: 15, treatments: 2 },
   ];
+
+  const healthStatusData = [
+    { name: 'Sehat', value: 85, color: 'hsl(var(--farm-green))' },
+    { name: 'Monitoring', value: 10, color: 'hsl(var(--warning-amber))' },
+    { name: 'Perawatan', value: 5, color: 'hsl(var(--destructive))' },
+  ];
+
+  const handleSaveActivity = (newActivity: any) => {
+    const formattedActivity = {
+      id: recentActivities.length + 1,
+      type: newActivity.activityType,
+      animal: newActivity.animalId,
+      description: newActivity.description,
+      date: formatDateToRelative(newActivity.date),
+      status: newActivity.status
+    };
+
+    setRecentActivities(prev => [formattedActivity, ...prev]);
+  };
+
+  const formatDateToRelative = (dateString: string) => {
+    const today = new Date();
+    const activityDate = new Date(dateString);
+    const diffTime = Math.abs(today.getTime() - activityDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) return 'Hari ini';
+    if (diffDays === 1) return '1 hari lalu';
+    if (diffDays < 7) return `${diffDays} hari lalu`;
+    if (diffDays < 14) return '1 minggu lalu';
+    if (diffDays < 30) return `${Math.floor(diffDays / 7)} minggu lalu`;
+    return `${Math.floor(diffDays / 30)} bulan lalu`;
+  };
 
   const getActivityIcon = (type: string) => {
     switch (type) {
@@ -244,7 +287,10 @@ const HealthTracking = () => {
                 Riwayat pemeriksaan, vaksinasi, dan perawatan terbaru
               </CardDescription>
             </div>
-            <Button className="bg-gradient-primary hover:opacity-90">
+            <Button 
+              className="bg-gradient-primary hover:opacity-90"
+              onClick={() => setIsAddActivityOpen(true)}
+            >
               <Plus className="h-4 w-4 mr-2" />
               Tambah Aktivitas
             </Button>
@@ -277,6 +323,13 @@ const HealthTracking = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Add Activity Form Dialog */}
+        <AddActivityForm
+          isOpen={isAddActivityOpen}
+          onClose={() => setIsAddActivityOpen(false)}
+          onSave={handleSaveActivity}
+        />
       </div>
     </section>
   );

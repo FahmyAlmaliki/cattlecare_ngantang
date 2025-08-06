@@ -11,7 +11,9 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <MonitoringDashboard />
-      <HealthTracking />
+      <div id="health">
+        <HealthTracking />
+      </div>
       <ChatbotSection />
       <Footer />
     </div>

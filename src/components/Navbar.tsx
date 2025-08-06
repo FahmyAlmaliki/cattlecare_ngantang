@@ -1,18 +1,39 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Activity, Heart, MessageSquare, BarChart3 } from "lucide-react";
+import { Menu, X, Activity, Heart, MessageSquare, BarChart3, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import cattleCareLogo from "@/assets/cattle-care-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleAddActivityClick = () => {
+    // Scroll to health section and trigger add activity
+    const healthSection = document.getElementById('health');
+    if (healthSection) {
+      healthSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Dispatch custom event to open the add activity form
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('openAddActivity'));
+    }, 500);
+  };
+
   const navItems = [
     { name: "Dashboard", href: "#dashboard", icon: BarChart3 },
     { name: "Monitoring", href: "#monitoring", icon: Activity },
     { name: "Kesehatan", href: "#health", icon: Heart },
+    { name: "Tambah Aktivitas", href: "#add-activity", icon: Plus, onClick: handleAddActivityClick },
     { name: "AI Assistant", href: "#chatbot", icon: MessageSquare },
   ];
+
+  const handleNavClick = (item: any, e: React.MouseEvent) => {
+    if (item.onClick) {
+      e.preventDefault();
+      item.onClick();
+      setIsOpen(false);
+    }
+  };
 
   return (
     <nav className="bg-card/90 backdrop-blur-md border-b border-border sticky top-0 z-50">
@@ -41,7 +62,8 @@ const Navbar = () => {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2"
+                    onClick={(e) => handleNavClick(item, e)}
+                    className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2 cursor-pointer"
                   >
                     <Icon className="h-4 w-4" />
                     {item.name}
@@ -78,8 +100,8 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-muted-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2"
-                onClick={() => setIsOpen(false)}
+                className="text-muted-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2 cursor-pointer"
+                onClick={(e) => handleNavClick(item, e)}
               >
                 <Icon className="h-4 w-4" />
                 {item.name}
