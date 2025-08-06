@@ -138,7 +138,7 @@ const ChatbotSection = () => {
                   <Bot className="h-5 w-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <CardTitle className="text-lg">CattleMon AI Assistant</CardTitle>
+                  <CardTitle className="text-lg">CattleCARE AI Assistant</CardTitle>
                   <CardDescription className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-farm-green rounded-full animate-pulse"></div>
                     Online dan siap membantu
