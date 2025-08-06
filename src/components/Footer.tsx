@@ -85,9 +85,7 @@ const Footer = () => {
               © 2024 Cattle CARE System. Sistem monitoring peternakan modern dengan teknologi terdepan.
             </p>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>Made with</span>
-              <Heart className="h-4 w-4 text-destructive fill-current" />
-              <span>untuk kemajuan peternakan Indonesia</span>
+              <span>Menuju kemajuan peternakan Indonesia</span> 
             </div>
           </div>
         </div>
