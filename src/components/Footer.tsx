@@ -82,7 +82,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2024 Cattle CARE System. Sistem monitoring peternakan modern dengan teknologi terdepan.
+              © 2025 Cattle CARE System. Sistem monitoring peternakan modern dengan teknologi terdepan.
             </p>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <span>Menuju kemajuan peternakan Indonesia</span> 
