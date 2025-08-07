@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-farm.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
+    <section id="dashboard" className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden scroll-mt-20">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
@@ -27,7 +27,7 @@ const HeroSection = () => {
           {/* Main Heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-lg">
             Sistem Monitoring
-            <span className="bg-gradient-primary bg-clip-text text-transparent block">
+            <span className="text-gradient-primary block">
               Closed House Sapi
             </span>
           </h1>

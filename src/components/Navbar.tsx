@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Activity, Heart, MessageSquare, BarChart3, Plus } from "lucide-react";
+import { Menu, X, Activity, Heart, MessageSquare, BarChart3, Plus, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AppContext";
 import cattleCareLogo from "@/assets/cattle-care-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout, user } = useAuth();
 
   const handleAddActivityClick = () => {
     // Scroll to health section and trigger add activity
@@ -17,6 +19,11 @@ const Navbar = () => {
     setTimeout(() => {
       window.dispatchEvent(new CustomEvent('openAddActivity'));
     }, 500);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setIsOpen(false);
   };
 
   const navItems = [
@@ -47,7 +54,7 @@ const Navbar = () => {
                 alt="Cattle CARE Logo" 
                 className="h-20 w-20 object-contain"
               />
-              <h1 className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold text-gradient-primary">
                 CattleCARE
               </h1>
             </div>
@@ -70,6 +77,22 @@ const Navbar = () => {
                   </a>
                 );
               })}
+              
+              {/* User Info and Logout */}
+              <div className="flex items-center gap-4 ml-4 pl-4 border-l border-border">
+                <span className="text-sm text-muted-foreground">
+                  Hai, {user?.name}
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="text-muted-foreground hover:text-primary flex items-center gap-2"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Keluar
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -108,6 +131,24 @@ const Navbar = () => {
               </a>
             );
           })}
+          
+          {/* Mobile User Info and Logout */}
+          <div className="border-t border-border pt-2 mt-2">
+            <div className="px-3 py-2">
+              <p className="text-sm text-muted-foreground mb-2">
+                Hai, {user?.name}
+              </p>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleLogout}
+                className="text-muted-foreground hover:text-primary flex items-center gap-2 w-full justify-start p-0"
+              >
+                <LogOut className="h-4 w-4" />
+                Keluar
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </nav>

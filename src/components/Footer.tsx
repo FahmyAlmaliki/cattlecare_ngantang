@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">
+            <h3 className="text-xl font-bold text-gradient-primary mb-4">
               Cattle CARE System
             </h3>
             <p className="text-muted-foreground mb-6 max-w-md">
